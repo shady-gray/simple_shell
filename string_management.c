@@ -72,7 +72,7 @@ int compare_str(char *str1, char *str2, int num)
 		{
 			if (str1[itr] != str2[itr])
 				return (0);
-				itr++;
+			itr++;
 		}
 		return (1);
 	}

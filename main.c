@@ -98,7 +98,7 @@ void prompt_loop(prog_data *data, char *pmt)
 				if (err_code != 0)
 					_print_error(err_code, data);
 			}
-			free_recurrent_data(data);
+			free_recurring_data(data);
 		}
 	}
 }
