@@ -5,7 +5,7 @@
  * print_alias - add, remove or show aliases
  * @data: program's data struct
  * @alias: alias
- * 
+ *
  * Return: 0 on Success, declared number on error
  */
 int print_alias(prog_data *data, char *alias)
@@ -111,4 +111,3 @@ int set_alias(char *str_alias, prog_data *data)
 		data->alias_list[n] = _strdup(str_alias);
 	return (0);
 }
-

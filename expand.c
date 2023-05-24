@@ -77,7 +77,7 @@ void variables_expand(prog_data *data)
 /**
  * alias_expand - performs alias expansions
  * @data: pointer to the program's data's struct
- * 
+ *
  * Return: void
  */
 void alias_expand(prog_data *data)
@@ -115,4 +115,3 @@ void alias_expand(prog_data *data)
 		data->input_line = _strdup(line);
 	}
 }
-
