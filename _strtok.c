@@ -50,7 +50,7 @@ char *str_tok(char *line, char *delim)
 /**
  * tokenize - separate string using a designed delim
  * @data: pointer to the program's data's struct
- *
+ * 
  * Return: void
  */
 void tokenize(prog_data *data)

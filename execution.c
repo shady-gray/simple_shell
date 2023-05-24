@@ -4,7 +4,7 @@
 /**
  * exec_cmd - exec_cmd a command using its entire path variables.
  * @data: a pointer to the program's data's struct
- *
+ * 
  * Return: returns zero on success, return -1 on failure.
  */
 int exec_cmd(prog_data *data)
