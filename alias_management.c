@@ -111,4 +111,3 @@ int set_alias(char *str_alias, prog_data *data)
 		data->alias_list[n] = _strdup(str_alias);
 	return (0);
 }
-

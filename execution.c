@@ -43,4 +43,3 @@ int exec_cmd(prog_data *data)
 	}
 	return (0);
 }
-

@@ -90,4 +90,3 @@ void tokenize(prog_data *data)
 		data->tokens[m] = str_duplicate(str_tok(NULL, delim));
 	}
 }
-

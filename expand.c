@@ -115,4 +115,3 @@ void alias_expand(prog_data *data)
 		data->input_line = _strdup(line);
 	}
 }
-
