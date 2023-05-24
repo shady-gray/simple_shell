@@ -36,7 +36,7 @@ int exec_cmd(prog_data *data)
 		{
 			wait(&stat);
 			if (WIFEXITED(stat))
-				errno = WEXITstat(stat);
+				errno = WEXITSTATUS(stat);
 			else if (WIFSIGNALED(stat))
 				errno = WTERMSIG(stat) + 128;
 		}

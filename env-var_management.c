@@ -78,8 +78,8 @@ int set_env_var(char *var, char *val, prog_data *data)
 		}
 		m++;
 	}
-	data->env[m] = _(_strdup(var), "=");
-	data->env[m] = _(data->env[m], val);
+	data->env[m] = (_strdup(var), "=");
+	/*data->env[m] = (data->env[m], val);*/
 
 	if (new_var)
 	{

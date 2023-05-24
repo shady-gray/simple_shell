@@ -34,7 +34,7 @@ void variables_expand(prog_data *data)
 	char *tmp, expand[BUFFER_SIZE] = {'\0'}, line[BUFFER_SIZE] = {0};
 
 	if (data->input_line == NULL)
-		;
+		return;
 	append_buffer(line, data->input_line);
 	for (m = 0; line[m]; m++)
 	{
@@ -86,7 +86,7 @@ void alias_expand(prog_data *data)
 	char line[BUFFER_SIZE] = {0}, expand[BUFFER_SIZE] = {'\0'}, *tmp;
 
 	if (data->input_line == NULL)
-		;
+		return;
 	append_buffer(line, data->input_line);
 
 	m = 0;
