@@ -1,6 +1,8 @@
-/*Author: Basil Bassey*/
+
 #ifndef SHELL_MAIN_H
 #define SHELL_MAIN_H
+
+/*Author: Basil Bassey*/
 
 #include "shell_macros.h"
 
@@ -55,7 +57,7 @@ typedef struct builtins
 /* shell_main.c functions*/
 void data_initialization(prog_data *data, int arc, char *argv[], char **env);
 void ctrlc_handler(int opr UNUSED);
-void prompt_loop(prog_data *data , char *pmt);
+void prompt_loop(prog_data *data, char *pmt);
 
 /* _getline.c functions */
 int _logic_ops(int i, char *array_commands[], char array_operators[]);
