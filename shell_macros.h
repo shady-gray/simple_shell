@@ -1,6 +1,7 @@
+#ifndef SHELL_MACROS_H
+#define SHELL_MACRO_H
+
 /*Author: Basil Bassey*/
-#ifndef HELPERS_H
-#define HELPERS_H
 
 #define UNUSED __attribute__((unused))
 
@@ -53,6 +54,5 @@
 "	setenv\t[variable value]\n"\
 "	unset\t[variable]\n"\
 "	help\t[built_name]\n\n"
-
-#endif
+#endif /* ifndef SHELL_MACROS_H */
 
