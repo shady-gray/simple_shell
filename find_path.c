@@ -87,9 +87,7 @@ char **tok_path(prog_data *data)
 
 	PATH = get_env_var("PATH", data);
 	if ((PATH == NULL) || PATH[0] == '\0')
-	{
 		return (NULL);
-	}
 
 	PATH = _strdup(PATH);
 	for (m = 0; PATH[m]; m++)

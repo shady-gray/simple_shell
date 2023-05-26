@@ -18,7 +18,7 @@ int exec_cmd(prog_data *data)
 	ret_value = program_finder(data);
 	if (ret_value)
 		return (ret_value);
-	if (!ret_value)
+	else if (!ret_value)
 	{
 		pidd = fork();
 		if (pidd == -1)

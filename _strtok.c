@@ -18,12 +18,10 @@ char *str_tok(char *line, char *delim)
 		str = line;
 	for (; *str != '\0'; str++)
 	{
-		m = 0;
-		while (delim[m] != '\0')
+		for (m = 0; delim[m] != '\0'; m++)
 		{
 			if (*str == delim[m])
 			break;
-			m++;
 		}
 		if (delim[m] == '\0')
 			break;
@@ -65,15 +63,13 @@ void tokenize(prog_data *data)
 			data->input_line[len - 1] = '\0';
 	}
 
-	m = 0;
-	while (data->input_line[m])
+	for (m = 0; data->input_line[m]; m++)
 	{
 		for (n = 0; delim[n]; n++)
 		{
 			if (data->input_line[m] == delim[n])
 				count++;
 		}
-		m++;
 	}
 
 	data->tokens = malloc(sizeof(char *) * count);

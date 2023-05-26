@@ -16,8 +16,8 @@ void print_env(prog_data *data)
 	{
 		_print_stdout(data->env[i]);
 		_print_stdout("\n");
+		i++;
 	}
-	i++;
 }
 
 /**
@@ -78,13 +78,12 @@ int set_env_var(char *var, char *val, prog_data *data)
 		}
 		m++;
 	}
-	data->env[m] = (_strdup(var), "=");
-	/*data->env[m] = (data->env[m], val);*/
+	data->env[m] = _strconcate(_strdup(var), "=");
+	data->env[m] = _strconcate(data->env[m], val);
 
 	if (new_var)
-	{
 		data->env[m + 1] = NULL;
-	}
+
 	return (0);
 }
 

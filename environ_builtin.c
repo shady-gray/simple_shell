@@ -79,7 +79,7 @@ int unsetenv_builtin(prog_data *data)
 {
 	if (data->tokens[1] == NULL)
 		return (0);
-	if (data->tokens[2])
+	if (data->tokens[2] != NULL)
 	{
 		errno = E2BIG;
 		perror(data->cmd_name);

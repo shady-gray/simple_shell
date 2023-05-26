@@ -14,7 +14,7 @@ int _logic_ops(int i, char *cmd_arr[], char opr_arr[])
 	char *tmp = NULL;
 	int j;
 
-	for (j = 0; cmd_arr[j] != NULL  && cmd_arr[i][j]; j++)
+	for (j = 0; cmd_arr[i] != NULL  && cmd_arr[i][j]; j++)
 	{
 		if (cmd_arr[i][j] == '&' && cmd_arr[i][j + 1] == '&')
 		{
@@ -29,9 +29,9 @@ int _logic_ops(int i, char *cmd_arr[], char opr_arr[])
 		}
 		if (cmd_arr[i][j] == '|' && cmd_arr[i][j + 1] == '|')
 		{
-			tmp = cmd_arr[j];
-			cmd_arr[j][j] = '\0';
-			cmd_arr[j] = _strdup(cmd_arr[j]);
+			tmp = cmd_arr[i];
+			cmd_arr[i][j] = '\0';
+			cmd_arr[i] = _strdup(cmd_arr[i]);
 			cmd_arr[i + 1] = _strdup(tmp + j + 2);
 			i++;
 			opr_arr[i] = '|';
@@ -51,7 +51,7 @@ int _logic_ops(int i, char *cmd_arr[], char opr_arr[])
 */
 int _getline(prog_data *data)
 {
-	char buff[BUFFER_SIZE] = {'\0'};
+	char buffer[BUFFER_SIZE] = {'\0'};
 	static char *cmd_arr[10] = {NULL};
 	static char opr_arr[10] = {'\0'};
 	ssize_t byte_rd, j = 0;
@@ -59,26 +59,25 @@ int _getline(prog_data *data)
 	if ((!(errno == 0) && opr_arr[0] == '&') || !cmd_arr[0]
 		|| (opr_arr[0] == '|' && errno == 0))
 	{
-		while (cmd_arr[j])
+		for (j = 0; cmd_arr[j]; j++)
 		{
 			free(cmd_arr[j]);
 			cmd_arr[j] = NULL;
-			j++;
 		}
 
-		byte_rd = read(data->file_descriptor, &buff, BUFFER_SIZE - 1);
+		byte_rd = read(data->file_descriptor, &buffer, BUFFER_SIZE - 1);
 		if (byte_rd == 0)
 			return (-1);
 
 		j = 0;
 		do {
-			cmd_arr[j] = _strdup(str_tok(j ? NULL : buff, "\n;"));
+			cmd_arr[j] = _strdup(str_tok(j ? NULL : buffer, "\n;"));
 			j = _logic_ops(j, cmd_arr, opr_arr);
 		} while (cmd_arr[j++]);
 	}
+
 	data->input_line = cmd_arr[0];
-	j = 0;
-	for (; cmd_arr[j]; j++)
+	for (j = 0; cmd_arr[j]; j++)
 	{
 		cmd_arr[j] = cmd_arr[j + 1];
 		opr_arr[j] = opr_arr[j + 1];

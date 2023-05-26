@@ -41,15 +41,13 @@ void variables_expand(prog_data *data)
 		if (line[m] == '#')
 			line[m--] = '\0';
 		else if (line[m] == '$' && line[n + m] == '?')
-		{
-			line[m] = '\0';
+		{	line[m] = '\0';
 			longint_to_str(errno, expand, 10);
 			append_buffer(line, expand);
 			append_buffer(line, data->input_line + 2 + m);
 		}
 		else if (line[m] == '$' && line[m + 1] == '$')
-		{
-			line[m] = '\0';
+		{	line[m] = '\0';
 			longint_to_str(getpid(), expand, 10);
 			append_buffer(line, expand);
 			append_buffer(line, data->input_line + 2 + m);
@@ -115,3 +113,4 @@ void alias_expand(prog_data *data)
 		data->input_line = _strdup(line);
 	}
 }
+
