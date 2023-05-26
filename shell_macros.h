@@ -1,5 +1,5 @@
 #ifndef SHELL_MACROS_H
-#define SHELL_MACRO_H
+#define SHELL_MACROS_H
 
 /*Author: Basil Bassey*/
 
@@ -54,5 +54,6 @@
 "	setenv\t[variable value]\n"\
 "	unset\t[variable]\n"\
 "	help\t[built_name]\n\n"
+
 #endif /* ifndef SHELL_MACROS_H */
 
