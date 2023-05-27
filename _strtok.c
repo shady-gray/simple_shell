@@ -10,39 +10,39 @@
 */
 char *str_tok(char *line, char *delim)
 {
-        int m;
-        static char *str;
-        char *cpy_str;
+	int m;
+	static char *str;
+	char *cpy_str;
 
-        if (line != NULL)
-                str = line;
-        for (; *str != '\0'; str++)
-        {
-                for (m = 0; delim[m] != '\0'; m++)
-                {
-                        if (*str == delim[m])
-                        break;
-                }
-                if (delim[m] == '\0')
-                        break;
-        }
+	if (line != NULL)
+		str = line;
+	for (; *str != '\0'; str++)
+	{
+		for (m = 0; delim[m] != '\0'; m++)
+		{
+			if (*str == delim[m])
+			break;
+		}
+		if (delim[m] == '\0')
+			break;
+	}
 
-        cpy_str = str;
-        if (*cpy_str == '\0')
-                return (NULL);
-        for (; *str != '\0'; str++)
-        {
-                for (m = 0;  delim[m] != '\0'; m++)
-                {
-                        if (*str == delim[m])
-                        {
-                                *str = '\0';
-                                str++;
-                                return (cpy_str);
-                        }
-                }
-        }
-        return (cpy_str);
+	cpy_str = str;
+	if (*cpy_str == '\0')
+		return (NULL);
+	for (; *str != '\0'; str++)
+	{
+		for (m = 0;  delim[m] != '\0'; m++)
+		{
+			if (*str == delim[m])
+			{
+				*str = '\0';
+				str++;
+				return (cpy_str);
+			}
+		}
+	}
+	return (cpy_str);
 }
 
 /**
@@ -53,36 +53,36 @@ char *str_tok(char *line, char *delim)
  */
 void tokenize(prog_data *data)
 {
-        char *delim = " \t";
-        int m, n, len, count = 2;
+	char *delim = " \t";
+	int m, n, len, count = 2;
 
-        len = _strlen(data->input_line);
-        if (len)
-        {
-                if (data->input_line[len - 1] == '\n')
-                        data->input_line[len - 1] = '\0';
-        }
+	len = _strlen(data->input_line);
+	if (len)
+	{
+		if (data->input_line[len - 1] == '\n')
+			data->input_line[len - 1] = '\0';
+	}
 
-        for (m = 0; data->input_line[m]; m++)
-        {
-                for (n = 0; delim[n]; n++)
-                {
-                        if (data->input_line[m] == delim[n])
-                                count++;
-                }
-        }
+	for (m = 0; data->input_line[m]; m++)
+	{
+		for (n = 0; delim[n]; n++)
+		{
+			if (data->input_line[m] == delim[n])
+				count++;
+		}
+	}
 
-        data->tokens = malloc(sizeof(char *) * count);
-        if (data->tokens == NULL)
-        {
-                perror(data->prog_name);
-                exit(errno);
-        }
-        m = 0;
-        data->tokens[m] = _strdup(str_tok(data->input_line, delim));
-        data->cmd_name = _strdup(data->tokens[0]);
-        while (data->tokens[m++])
-        {
-                data->tokens[m] = _strdup(str_tok(NULL, delim));
-        }
+	data->tokens = malloc(sizeof(char *) * count);
+	if (data->tokens == NULL)
+	{
+		perror(data->prog_name);
+		exit(errno);
+	}
+	m = 0;
+	data->tokens[m] = _strdup(str_tok(data->input_line, delim));
+	data->cmd_name = _strdup(data->tokens[0]);
+	while (data->tokens[m++])
+	{
+		data->tokens[m] = _strdup(str_tok(NULL, delim));
+	}
 }

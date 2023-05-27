@@ -9,15 +9,15 @@
  */
 void print_env(prog_data *data)
 {
-        int i;
+	int i;
 
-        i = 0;
-        while (data->env[i])
-        {
-                _print_stdout(data->env[i]);
-                _print_stdout("\n");
-                i++;
-        }
+	i = 0;
+	while (data->env[i])
+	{
+		_print_stdout(data->env[i]);
+		_print_stdout("\n");
+		i++;
+	}
 }
 
 /**
@@ -29,24 +29,24 @@ void print_env(prog_data *data)
  */
 char *get_env_var(char *var, prog_data *data)
 {
-        int m, var_len = 0;
+	int m, var_len = 0;
 
-        if (var == NULL || data->env == NULL)
-                return (NULL);
-        var_len = _strlen(var);
+	if (var == NULL || data->env == NULL)
+		return (NULL);
+	var_len = _strlen(var);
 
-        m = 0;
-        while (data->env[m])
-        {
-                if (data->env[m][var_len] == '='
-                    && compare_str(var, data->env[m], var_len))
-                {
-                        return (data->env[m] + var_len + 1);
-                }
-                m++;
-        }
+	m = 0;
+	while (data->env[m])
+	{
+		if (data->env[m][var_len] == '='
+		    && compare_str(var, data->env[m], var_len))
+		{
+			return (data->env[m] + var_len + 1);
+		}
+		m++;
+	}
 
-        return (NULL);
+	return (NULL);
 }
 
 /**
@@ -60,31 +60,31 @@ char *get_env_var(char *var, prog_data *data)
  */
 int set_env_var(char *var, char *val, prog_data *data)
 {
-        int m, var_len = 0, new_var = 1;
+	int m, var_len = 0, new_var = 1;
 
-        if (val == NULL || data->env == NULL  || var == NULL)
-                return (1);
-        var_len = _strlen(var);
+	if (val == NULL || data->env == NULL  || var == NULL)
+		return (1);
+	var_len = _strlen(var);
 
-        m = 0;
-        while (data->env[m])
-        {
-                if (compare_str(var, data->env[m], var_len) &&
-                 data->env[m][var_len] == '=')
-                {
-                        new_var = 0;
-                        free(data->env[m]);
-                        break;
-                }
-                m++;
-        }
-        data->env[m] = _strconcate(_strdup(var), "=");
-        data->env[m] = _strconcate(data->env[m], val);
+	m = 0;
+	while (data->env[m])
+	{
+		if (compare_str(var, data->env[m], var_len) &&
+		 data->env[m][var_len] == '=')
+		{
+			new_var = 0;
+			free(data->env[m]);
+			break;
+		}
+		m++;
+	}
+	data->env[m] = _strconcate(_strdup(var), "=");
+	data->env[m] = _strconcate(data->env[m], val);
 
-        if (new_var)
-                data->env[m + 1] = NULL;
+	if (new_var)
+		data->env[m + 1] = NULL;
 
-        return (0);
+	return (0);
 }
 
 /**
@@ -96,28 +96,28 @@ int set_env_var(char *var, char *val, prog_data *data)
  */
 int remove_env_var(char *var, prog_data *data)
 {
-        int m, var_len = 0;
+	int m, var_len = 0;
 
-        if (var == NULL || data->env == NULL)
-                return (0);
-        var_len = _strlen(var);
+	if (var == NULL || data->env == NULL)
+		return (0);
+	var_len = _strlen(var);
 
-        m = 0;
-        while (data->env[m])
-        {
-                if (compare_str(var, data->env[m], var_len) &&
-                 data->env[m][var_len] == '=')
-                {
-                        free(data->env[m]);
-                        m++;
-                        for (; data->env[m]; m++)
-                        {
-                                data->env[m - 1] = data->env[m];
-                        }
-                        data->env[m - 1] = NULL;
-                        return (1);
-                }
-                m++;
-        }
-        return (0);
+	m = 0;
+	while (data->env[m])
+	{
+		if (compare_str(var, data->env[m], var_len) &&
+		 data->env[m][var_len] == '=')
+		{
+			free(data->env[m]);
+			m++;
+			for (; data->env[m]; m++)
+			{
+				data->env[m - 1] = data->env[m];
+			}
+			data->env[m - 1] = NULL;
+			return (1);
+		}
+		m++;
+	}
+	return (0);
 }
